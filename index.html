@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Algs</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+<div class="container">
+<h2 class="title">OLL</h2>
+
+<h3 class="title">Cross</h3>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-edge-bar"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">Bar</p>
+<p class="is-size-5 has-text-weight-bold">F (R U R' U') F'</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-edge-l"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">L</p>
+<p class="is-size-5 has-text-weight-bold">f (R U R' U') f'</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-edge-dot"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">Dot</p>
+<p class="is-size-5 has-text-weight-bold">F (R U R' U') F' f (R U R' U') f'</p>
+</div>
+</article>
+
+<h3 class="title">Corners</h3>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-sune"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">Sune</p>
+<p class="is-size-5 has-text-weight-bold">R U R' U R U2 R'</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-antisune"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">Antisune</p>
+<p class="is-size-5 has-text-weight-bold">L' U' L U' L' U2 L</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-h"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">H</p>
+<p class="is-size-5 has-text-weight-bold">F (R U R' U')3 F'</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-pi"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">Pi</p>
+<p class="is-size-5 has-text-weight-bold">R U2 (R2 U' R2 U' R2) U2 R</p>
+</div>
+</article>
+
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-t"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">T</p>
+<p class="is-size-5 has-text-weight-bold">(r U R' U')(r' F R F')</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-u"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">U</p>
+<p class="is-size-5 has-text-weight-bold">R2 D R' U2 R D' R' U2 R'</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="oll-l"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">L</p>
+<p class="is-size-5 has-text-weight-bold">(R' F)(R B')(R' F')(R B)</p>
+</div>
+</article>
+
+
+
+
+
+<!--
+<h2>PLL</h2>
+
+<div>
+<canvas id="oll"></canvas>
+</div>
+--!>
+
+<script>
+const gap = 4;
+const size = 30;
+const sides = 6;
+
+const colors = {
+  "r": "red",
+  "g": "green",
+  "b": "blue",
+  "w": "white",
+  "y": "#f0f000",
+  "o": "orange",
+  "_": "gray"
+};
+
+function cube(id, squares, top, bottom, left, right) {
+    const canvas = document.getElementById(id);
+
+    canvas.width = 2 * sides + 3 * size + 4 * gap;
+    canvas.height = 2 * sides + 3 * size + 4 * gap;
+
+    const ctx = canvas.getContext('2d');
+
+    for (y = 0; y < 3; ++y) {
+        for (x = 0; x < 3; ++x) {
+            ctx.fillStyle = colors[squares.charAt(y * 3 + x)];
+            const rx = (size + gap) * x + sides + gap;
+            const ry = (size + gap) * y + sides + gap;
+            ctx.fillRect(rx, ry, size, size);
+        }
+    }
+
+    if (typeof top !== 'undefined') {
+        for (i = 0; i < 3; ++i) {
+            // top
+            ctx.fillStyle = colors[top.charAt(i)];
+            ctx.fillRect(sides + gap + (size + gap) * i, 0, size, sides);
+
+            // bottom
+            ctx.fillStyle = colors[bottom.charAt(i)];
+            ctx.fillRect(sides + gap + (size + gap) * i, (gap + size) * 3 + gap + sides, size, sides);
+
+            // left
+            ctx.fillStyle = colors[left.charAt(i)];
+            ctx.fillRect(0, sides + gap + (size + gap) * i , sides, size);
+
+            // right
+            ctx.fillStyle = colors[right.charAt(i)];
+            ctx.fillRect((gap + size) * 3 + gap + sides, sides + gap + (size + gap) * i , sides, size);
+        }
+    }
+}
+
+cube("oll-edge-bar", "___yyy___", "_y_", "_y_", "___", "___");
+cube("oll-edge-l", "____yy_y_", "_y_", "___", "_y_", "___");
+cube("oll-edge-dot", "____y____", "_y_", "_y_", "_y_", "_y_");
+
+cube("oll-sune", "_y_yyyyy_", "y__", "__y", "___", "y__");
+cube("oll-antisune", "_y_yyy_yy", "__y", "y__", "y__", "___");
+cube("oll-h", "_y_yyy_y_", "y_y", "y_y", "___", "___");
+cube("oll-pi", "_y_yyy_y_", "__y", "__y", "y_y", "___");
+cube("oll-t", "_yyyyy_yy", "y__", "y__", "___", "___");
+cube("oll-u", "yyyyyy_y_", "___", "y_y", "___", "___");
+cube("oll-l", "yy_yyy_yy", "___", "y__", "___", "y__");
+
+</script>
+</div>
+</section>
+</body>
+</html>
