@@ -12,11 +12,13 @@ const colors = {
   "_": "gray"
 };
 
-function cube(id, squares) {
+function cube(id) {
     const canvas = document.getElementById(id);
 
     canvas.width = 2 * sides + 3 * size + 4 * gap;
     canvas.height = 2 * sides + 3 * size + 4 * gap;
+
+    const squares = canvas.getAttribute("data-squares");
 
     const ctx = canvas.getContext('2d');
 
@@ -50,14 +52,14 @@ function cube(id, squares) {
     }
 }
 
-cube("oll-edge-bar", "___yyy___|_y_|_y_|___|___");
-cube("oll-edge-l", "____yy_y_|_y_|___|_y_|___");
-cube("oll-edge-dot", "____y____|_y_|_y_|_y_|_y_");
+cube("oll-edge-bar");
+cube("oll-edge-l");
+cube("oll-edge-dot");
 
-cube("oll-sune", "_y_yyyyy_|y__|__y|___|y__");
-cube("oll-antisune", "_y_yyy_yy|__y|y__|y__|___");
-cube("oll-h", "_y_yyy_y_|y_y|y_y|___|___");
-cube("oll-pi", "_y_yyy_y_|__y|__y|y_y|___");
-cube("oll-t", "_yyyyy_yy|y__|y__|___|___");
-cube("oll-u", "yyyyyy_y_|___|y_y|___|___");
-cube("oll-l", "yy_yyy_yy|___|y__|___|y__");
+cube("oll-sune");
+cube("oll-antisune");
+cube("oll-h");
+cube("oll-pi");
+cube("oll-t");
+cube("oll-u");
+cube("oll-l");
