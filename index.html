@@ -159,7 +159,7 @@ const colors = {
   "_": "gray"
 };
 
-function cube(id, squares, top, bottom, left, right) {
+function cube(id, squares) {
     const canvas = document.getElementById(id);
 
     canvas.width = 2 * sides + 3 * size + 4 * gap;
@@ -176,38 +176,38 @@ function cube(id, squares, top, bottom, left, right) {
         }
     }
 
-    if (typeof top !== 'undefined') {
-        for (i = 0; i < 3; ++i) {
-            // top
-            ctx.fillStyle = colors[top.charAt(i)];
-            ctx.fillRect(sides + gap + (size + gap) * i, 0, size, sides);
+    const edges = squares.split("|");
 
-            // bottom
-            ctx.fillStyle = colors[bottom.charAt(i)];
-            ctx.fillRect(sides + gap + (size + gap) * i, (gap + size) * 3 + gap + sides, size, sides);
+    for (i = 0; i < 3; ++i) {
+        // top
+        ctx.fillStyle = colors[edges[1].charAt(i)];
+        ctx.fillRect(sides + gap + (size + gap) * i, 0, size, sides);
 
-            // left
-            ctx.fillStyle = colors[left.charAt(i)];
-            ctx.fillRect(0, sides + gap + (size + gap) * i , sides, size);
+        // bottom
+        ctx.fillStyle = colors[edges[2].charAt(i)];
+        ctx.fillRect(sides + gap + (size + gap) * i, (gap + size) * 3 + gap + sides, size, sides);
 
-            // right
-            ctx.fillStyle = colors[right.charAt(i)];
-            ctx.fillRect((gap + size) * 3 + gap + sides, sides + gap + (size + gap) * i , sides, size);
-        }
+        // left
+        ctx.fillStyle = colors[edges[3].charAt(i)];
+        ctx.fillRect(0, sides + gap + (size + gap) * i , sides, size);
+
+        // right
+        ctx.fillStyle = colors[edges[4].charAt(i)];
+        ctx.fillRect((gap + size) * 3 + gap + sides, sides + gap + (size + gap) * i , sides, size);
     }
 }
 
-cube("oll-edge-bar", "___yyy___", "_y_", "_y_", "___", "___");
-cube("oll-edge-l", "____yy_y_", "_y_", "___", "_y_", "___");
-cube("oll-edge-dot", "____y____", "_y_", "_y_", "_y_", "_y_");
+cube("oll-edge-bar", "___yyy___|_y_|_y_|___|___");
+cube("oll-edge-l", "____yy_y_|_y_|___|_y_|___");
+cube("oll-edge-dot", "____y____|_y_|_y_|_y_|_y_");
 
-cube("oll-sune", "_y_yyyyy_", "y__", "__y", "___", "y__");
-cube("oll-antisune", "_y_yyy_yy", "__y", "y__", "y__", "___");
-cube("oll-h", "_y_yyy_y_", "y_y", "y_y", "___", "___");
-cube("oll-pi", "_y_yyy_y_", "__y", "__y", "y_y", "___");
-cube("oll-t", "_yyyyy_yy", "y__", "y__", "___", "___");
-cube("oll-u", "yyyyyy_y_", "___", "y_y", "___", "___");
-cube("oll-l", "yy_yyy_yy", "___", "y__", "___", "y__");
+cube("oll-sune", "_y_yyyyy_|y__|__y|___|y__");
+cube("oll-antisune", "_y_yyy_yy|__y|y__|y__|___");
+cube("oll-h", "_y_yyy_y_|y_y|y_y|___|___");
+cube("oll-pi", "_y_yyy_y_|__y|__y|y_y|___");
+cube("oll-t", "_yyyyy_yy|y__|y__|___|___");
+cube("oll-u", "yyyyyy_y_|___|y_y|___|___");
+cube("oll-l", "yy_yyy_yy|___|y__|___|y__");
 
 </script>
 </div>
