@@ -52,14 +52,14 @@ function cube(id) {
     }
 }
 
-cube("oll-edge-bar");
-cube("oll-edge-l");
-cube("oll-edge-dot");
+document.addEventListener('DOMContentLoaded', function() {
 
-cube("oll-sune");
-cube("oll-antisune");
-cube("oll-h");
-cube("oll-pi");
-cube("oll-t");
-cube("oll-u");
-cube("oll-l");
+    var cubes = document.getElementsByTagName("canvas");
+
+    var i;
+    for (i = 0; i < cubes.length; i++) {
+        cube(cubes[i].id);
+    }
+
+
+}, false);
