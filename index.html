@@ -16,7 +16,8 @@
 <p>For the last year or so I have been playing with speedcubes and learning how
 to solve them. This is a list of the last layer algorithms I know, or am learning.
 Mainly placing them here so I can use them as a reference. I'll be adding to them
-over time. Still need to add my PLL algorithms.</p>
+over time. Still need to add my PLL algorithms. Most of these algorithms came from
+<a href="https://www.youtube.com/JPerm">JPerm's youtube videos.</a></p>
 
 <h2 class="title is-2">OLL</h2>
 
@@ -127,13 +128,55 @@ do it but easy to remember.</p>
 </div>
 </article>
 
-<!--
-<h2>PLL</h2>
+<h2 class="title is-2">PLL</h2>
 
-<div>
-<canvas id="oll"></canvas>
+<h3 class="title is-3">Corners</h3>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="pll-corners" data-squares="yyyyyyyyy|r_r|b_g|g_o|b_o"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">A(a)</p>
+<p class="is-size-5 has-text-weight-bold">(R' F R') B2 (R F' R') B2 R2</p>
+<p>I use this to permute corners. Place the headlights to the back. If there are
+no headlights you need to execute it twice. Originally learnt this algorithm
+from <a href="https://www.youtube.com/watch?v=609nhVzg-5Q">badmephisto's video</a>.</p>
 </div>
--->
+</article>
+
+<h3 class="title is-3">Edges</h3>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="pll-u" data-squares="yyyyyyyyy|rrr|obo|gog|bgb"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">U</p>
+<p class="is-size-5 has-text-weight-bold">R U' R U R U R U' R' U' R2</p>
+<p>To cycle edges the other direction I do this algorithm with my left hand.</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="pll-h" data-squares="yyyyyyyyy|ror|oro|gbg|bgb"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">H</p>
+<p class="is-size-5 has-text-weight-bold">M2 U' (M2 U2 M2) U' M2</p>
+</div>
+</article>
+
+<article class="media">
+<figure class="media-left">
+<canvas id="pll-z" data-squares="yyyyyyyyy|brb|gog|rbr|ogo"></canvas>
+</figure>
+<div class="media-content">
+<p class="is-size-4 has-text-weight-bold">Z</p>
+<p class="is-size-5 has-text-weight-bold">M' U' (M2 U' M2) U' M' (U2 M2)</p>
+</div>
+</article>
 
 <footer class="footer">
 <div class="content has-text-centered">
