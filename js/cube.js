@@ -12,6 +12,42 @@ const colors = {
   "_": "gray"
 };
 
+function draw_arrow_head(ctx, x, y, line_angle) {
+    let angle = Math.PI / 8;
+    let length = 10;
+    let h = Math.abs(length / Math.cos(angle));
+
+    let x0 = x + Math.cos(line_angle + angle) * h;
+    let y0 = y + Math.sin(line_angle + angle) * h;
+
+    let x1 = x + Math.cos(line_angle - angle) * h;
+    let y1 = y + Math.sin(line_angle - angle) * h;
+
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x0, y0);
+    ctx.lineTo(x1, y1);
+    ctx.closePath();
+    ctx.fill();
+}
+
+function draw_line(ctx, x0, y0, x1, y1, start_arrow, end_arrow) {
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.lineTo(x1, y1);
+    ctx.stroke();
+
+    let line_angle = Math.atan2(y1 - y0, x1 - x0);
+
+    if (end_arrow) {
+      draw_arrow_head(ctx, x1, y1, line_angle + Math.PI);
+    }
+
+    if (start_arrow) {
+      draw_arrow_head(ctx, x0, y0, line_angle);
+    }
+}
+
 function cube(id) {
     const canvas = document.getElementById(id);
 
@@ -49,6 +85,25 @@ function cube(id) {
         // right
         ctx.fillStyle = colors[edges[4].charAt(i)];
         ctx.fillRect((gap + size) * 3 + gap + sides, sides + gap + (size + gap) * i , sides, size);
+    }
+
+    // lines
+    ctx.fillStyle = "gray";
+    ctx.strokeStyle = "gray";
+    let arrows = canvas.getAttribute("data-arrows");
+    if (arrows != null) {
+        arrows = arrows.split("|");
+        let both = false;
+        if (arrows.length != 3) {
+            both = true;
+        }
+        arrows.forEach(function(a) {
+          const x0 = (size + gap) * (parseInt(a[0]) % 3) + sides + gap + size/2;
+          const y0 = (size + gap) * Math.floor(parseInt(a[0]) / 3) + sides + gap + size/2;
+          const x1 = (size + gap) * (parseInt(a[1]) % 3) + sides + gap + size/2;
+          const y1 = (size + gap) * Math.floor(parseInt(a[1]) / 3) + sides + gap + size/2;
+          draw_line(ctx, x0, y0, x1, y1, both, true);
+        });
     }
 }
 
