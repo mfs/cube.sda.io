@@ -93,16 +93,12 @@ function cube(id) {
     let arrows = canvas.getAttribute("data-arrows");
     if (arrows != null) {
         arrows = arrows.split("|");
-        let both = false;
-        if (arrows.length != 3) {
-            both = true;
-        }
         arrows.forEach(function(a) {
           const x0 = (size + gap) * (parseInt(a[0]) % 3) + sides + gap + size/2;
           const y0 = (size + gap) * Math.floor(parseInt(a[0]) / 3) + sides + gap + size/2;
           const x1 = (size + gap) * (parseInt(a[1]) % 3) + sides + gap + size/2;
           const y1 = (size + gap) * Math.floor(parseInt(a[1]) / 3) + sides + gap + size/2;
-          draw_line(ctx, x0, y0, x1, y1, both, true);
+          draw_line(ctx, x0, y0, x1, y1, arrows.length != 3, true);
         });
     }
 }
