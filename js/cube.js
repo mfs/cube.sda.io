@@ -1,3 +1,5 @@
+"use strict";
+
 const gap = 4;
 const size = 30;
 const sides = 6;
@@ -58,8 +60,8 @@ function cube(id) {
 
     const ctx = canvas.getContext('2d');
 
-    for (y = 0; y < 3; ++y) {
-        for (x = 0; x < 3; ++x) {
+    for (let y = 0; y < 3; ++y) {
+        for (let x = 0; x < 3; ++x) {
             ctx.fillStyle = colors[squares.charAt(y * 3 + x)];
             const rx = (size + gap) * x + sides + gap;
             const ry = (size + gap) * y + sides + gap;
@@ -69,7 +71,7 @@ function cube(id) {
 
     const edges = squares.split("|");
 
-    for (i = 0; i < 3; ++i) {
+    for (let i = 0; i < 3; ++i) {
         // top
         ctx.fillStyle = colors[edges[1].charAt(i)];
         ctx.fillRect(sides + gap + (size + gap) * i, 0, size, sides);
@@ -105,12 +107,10 @@ function cube(id) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    var cubes = document.getElementsByTagName("canvas");
+    let cubes = document.getElementsByTagName("canvas");
 
-    var i;
-    for (i = 0; i < cubes.length; i++) {
+    for (let i = 0; i < cubes.length; i++) {
         cube(cubes[i].id);
     }
-
 
 }, false);
