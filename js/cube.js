@@ -109,8 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let cubes = document.getElementsByTagName("canvas");
 
-    for (let i = 0; i < cubes.length; i++) {
-        cube(cubes[i].id);
+    for (let c of cubes) {
+        cube(c.id);
+
     }
 
 }, false);
