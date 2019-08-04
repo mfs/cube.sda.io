@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mike's 3x3 Algorithms</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+<style>
+input[type="radio"], .tab-pane { display: none; }
+#oll:checked ~ .tab-content > .content-oll,
+#pll:checked ~ .tab-content > .content-pll {
+  display: block;
+}
+</style>
 <script src="js/cube.js"></script>
 </head>
 <body>
@@ -19,6 +26,18 @@ Mainly placing them here so I can use them as a reference. I'll be adding to the
 over time. Most of these algorithms came from
 <a href="https://www.youtube.com/JPerm">JPerm's youtube videos.</a></p>
 
+<input type="radio" id="oll" name="nav-tab">
+<input type="radio" id="pll" name="nav-tab">
+<div class="tabs">
+  <ul>
+    <li><label for="oll"><a>OLL</a></label></li>
+    <li><label for="pll"><a>PLL</a></label></li>
+  </ul>
+</div>
+
+<div class="tab-content">
+
+<div class="tab-pane content-oll">
 <h2 class="title is-2">OLL</h2>
 
 <h3 class="title is-3">Cross</h3>
@@ -128,6 +147,9 @@ do it but easy to remember.</p>
 </div>
 </article>
 
+</div>
+
+<div class="tab-pane content-pll">
 <h2 class="title is-2">PLL</h2>
 
 <h3 class="title is-3">Corners</h3>
@@ -220,6 +242,10 @@ from <a href="https://www.youtube.com/watch?v=609nhVzg-5Q">badmephisto's video</
 <p class="is-size-5 has-text-weight-bold">F (R U' R' U') (R U R' F') (R U R' U') (R' F R F')</p>
 </div>
 </article>
+
+</div>
+
+</div>
 
 <footer class="footer">
 <div class="content has-text-centered">
